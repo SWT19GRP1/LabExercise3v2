@@ -52,7 +52,7 @@ namespace Calculator
             return _accumulator;
         }
 
-        private int _accumulator;
+        private double _accumulator;
 
     }
 }
