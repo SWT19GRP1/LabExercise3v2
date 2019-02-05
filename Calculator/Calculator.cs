@@ -6,53 +6,53 @@ namespace Calculator
     {
         public double Add(double a, double b)
         {
-            _accumulator = a + b;
+            Accumulator = a + b;
             return a + b;
         }
 
         public double Subtract(double a, double b)
         {
-            _accumulator = a - b;
+            Accumulator = a - b;
             return a - b;
         }
 
         public double Multiply(double a, double b)
         {
-            _accumulator = a * b;
+            Accumulator = a * b;
             return a * b;
         }
 
         public double Power(double a, double b)
         {
-            _accumulator = Math.Pow(a, b);
+            Accumulator = Math.Pow(a, b);
             return Math.Pow(a, b);
         }
 
         public double Add(double addend)
         {
-            _accumulator += addend;
-            return _accumulator;
+            Accumulator += addend;
+            return Accumulator;
         }
 
         public double Subtract(double subtractor)
         {
-            _accumulator -= subtractor;
-            return _accumulator;
+            Accumulator -= subtractor;
+            return Accumulator;
         }
 
         public double Multiply(double multiplier)
         {
-            _accumulator *= multiplier;
-            return _accumulator;
+            Accumulator *= multiplier;
+            return Accumulator;
         }
 
         public double Divide(double divisor)
         {
-            _accumulator /= divisor;
-            return _accumulator;
+            Accumulator /= divisor;
+            return Accumulator;
         }
 
-        private int _accumulator;
+        public double Accumulator { get; private set; } = 0;
 
     }
 }

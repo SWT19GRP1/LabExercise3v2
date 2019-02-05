@@ -87,5 +87,12 @@ namespace Calculator.Test.Unit
 
             Assert.That(result, Is.EqualTo(0.707107).Within(0.0000005));
         }
+
+        [TestCase (5,2,3)]
+        public void AccumulateSubtract_SubtractNumbers_ResultIsCorrect(double y, double x, double result)
+        {
+            _uut.Add(y);
+            Assert.That(_uut.Subtract(x), Is.EqualTo(result).Within(0.0005));
+        }
     }
 }
