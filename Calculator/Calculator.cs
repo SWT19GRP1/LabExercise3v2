@@ -53,6 +53,5 @@ namespace Calculator
         }
 
         public double Accumulator { get; private set; } = 0;
-
     }
 }
