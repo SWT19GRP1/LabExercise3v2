@@ -89,10 +89,56 @@ namespace Calculator.Test.Unit
         }
 
         [TestCase (5,2,3)]
+        [TestCase(5, 6, -1)]
+        [TestCase(12.508, 11.35, 1.158)]
+        [TestCase(10, -2, 12)]
+        [TestCase(-1, -2, 1)]
         public void AccumulateSubtract_SubtractNumbers_ResultIsCorrect(double y, double x, double result)
         {
             _uut.Add(y);
             Assert.That(_uut.Subtract(x), Is.EqualTo(result).Within(0.0005));
+        }
+
+        [TestCase(5, 2, 7)]
+        [TestCase(5, 6, 11)]
+        [TestCase(12.508, 11.350, 23.858)]
+        [TestCase(10, -2, 8)]
+        [TestCase(-1, -2, -3)]
+        public void AccumulateAdd_AddNumbers_ResultIsCorrect(double y, double x, double result)
+        {
+            _uut.Add(y);
+            Assert.That(_uut.Add(x), Is.EqualTo(result).Within(0.0005));
+        }
+
+        [TestCase(5, 2, 10)]
+        [TestCase(5, 6, 30)]
+        [TestCase(12.508, 11.350, 141.9658)]
+        [TestCase(10, -2, -20)]
+        [TestCase(-1, -2, 2)]
+        public void AccumulateMultiply_MultiplyNumbers_ResultIsCorrect(double y, double x, double result)
+        {
+            _uut.Add(y);
+            Assert.That(_uut.Multiply(x), Is.EqualTo(result).Within(0.0005));
+        }
+
+        [Test]
+        public void Clear_AccumulatorIsZero_isTrue()
+        {
+            _uut.clear();
+            Assert.AreEqual(_uut.Accumulator, 0);
+        }
+
+        [TestCase (3, 3, 27)]
+        [TestCase (5, 2, 25)]
+        [TestCase (5, -1, 0.2)]
+        public void AccumulatePower_RaisingAccumulatorToNumber_ResultIsCorrect(double x, double y, double result)
+        {
+            _uut.clear();
+            _uut.Add(x);
+
+            double CalcResult = _uut.Power(y);
+
+            Assert.That(CalcResult, Is.EqualTo(result));
         }
 
         [TestCase(10, 5, 2)]
