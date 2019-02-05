@@ -29,7 +29,7 @@ namespace Calculator.Test.Unit
             Assert.That(result, Is.EqualTo(5));
         }
 
-        // The TestCase feature allows reusing test code for diffent input and expected output
+        // The TestCase feature allows reusing test code for different input and expected output
         [TestCase(3, 2, 5)]
         [TestCase(-3, -2, -5)]
         [TestCase(-3, 2, -1)]
@@ -93,6 +93,22 @@ namespace Calculator.Test.Unit
         {
             _uut.Add(y);
             Assert.That(_uut.Subtract(x), Is.EqualTo(result).Within(0.0005));
+        }
+
+        [TestCase(10, 5, 2)]
+    
+
+        public void DivideNumbers_ResultIsCorrect(double dividend, double divisor, double result)
+        {
+            Assert.That(_uut.Divide(dividend,divisor), Is.EqualTo(result));
+        }
+        [Test]
+        public void DivideNumber_ExceptionIsExpected()
+        {
+          
+            Assert.That(()=>_uut.Divide(3,0), Throws.TypeOf<DivideByZeroException>());
+
+     
         }
     }
 }

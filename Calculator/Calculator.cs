@@ -4,6 +4,18 @@ namespace Calculator
 {
     public class Calculator
     {
+        public double Divide(double dividend, double divisor)
+        {
+            if (divisor == 0)
+            {
+               throw new DivideByZeroException("Error");
+
+            }
+            else
+            {
+                return dividend / divisor;
+            }
+        }
         public double Add(double a, double b)
         {
             Accumulator = a + b;
@@ -48,8 +60,16 @@ namespace Calculator
 
         public double Divide(double divisor)
         {
-            Accumulator /= divisor;
-            return Accumulator;
+            if (divisor == 0)
+            {
+                throw new DivideByZeroException();
+
+            }
+            else
+            {
+                Accumulator /= divisor;
+                return Accumulator;
+            }
         }
 
         public double Accumulator { get; private set; } = 0;
