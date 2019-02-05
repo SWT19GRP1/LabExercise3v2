@@ -127,5 +127,18 @@ namespace Calculator.Test.Unit
             _uut.clear();
             Assert.AreEqual(_uut.Accumulator, 0);
         }
+
+        [TestCase (3, 3, 27)]
+        [TestCase (5, 2, 25)]
+        [TestCase (5, -1, 0.2)]
+        public void AccumulatePower_RaisingAccumulatorToNumber_ResultIsCorrect(double x, double y, double result)
+        {
+            _uut.clear();
+            _uut.Add(x);
+
+            double CalcResult = _uut.Power(y);
+
+            Assert.That(CalcResult, Is.EqualTo(result));
+        }
     }
 }
