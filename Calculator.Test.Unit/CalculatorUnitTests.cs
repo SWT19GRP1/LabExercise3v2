@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using Calculator;
 using NUnit.Framework;
 
@@ -138,15 +139,21 @@ namespace Calculator.Test.Unit
 
             double CalcResult = _uut.Power(y);
 
-            Assert.That(CalcResult, Is.EqualTo(result));
+            Assert.That(CalcResult, Is.EqualTo(result).Within(0.000005));
         }
 
         [TestCase(10, 5, 2)]
+        [TestCase(5,2,2.5)]
+        [TestCase(9.6,3,3.2)]
+        [TestCase(-20,5,-4)]
+        [TestCase(-8,-2,4)]
+        [TestCase(50,-5,-10)]
+
     
 
         public void DivideNumbers_ResultIsCorrect(double dividend, double divisor, double result)
         {
-            Assert.That(_uut.Divide(dividend,divisor), Is.EqualTo(result));
+            Assert.That(_uut.Divide(dividend,divisor), Is.EqualTo(result).Within(0.00005));
         }
         [Test]
         public void DivideNumber_ExceptionIsExpected()
@@ -155,6 +162,28 @@ namespace Calculator.Test.Unit
             Assert.That(()=>_uut.Divide(3,0), Throws.TypeOf<DivideByZeroException>());
 
      
+        }
+
+        [TestCase(9, 3, 3)]
+        [TestCase(5, 2, 2.5)]
+        [TestCase(9.6, 3, 3.2)]
+        [TestCase(-20, 5, -4)]
+        [TestCase(-8, -2, 4)]
+        [TestCase(50, -5, -10)]
+
+
+        public void AccumulateDivide_Dividing_ResultIsCorrect(double x, double y, double result)
+        {
+            _uut.Add(x);
+            Assert.That(_uut.Divide(y), Is.EqualTo(result).Within(0.00005));
+        }
+
+        [Test]
+        public void AccumulateDivide_ExceptionIsExpected()
+        {
+
+            _uut.Add(8);
+            Assert.That(()=>_uut.Divide(0), Throws.TypeOf<DivideByZeroException>());
         }
     }
 }

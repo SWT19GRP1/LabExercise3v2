@@ -8,7 +8,7 @@ namespace Calculator
         {
             if (divisor == 0)
             {
-               throw new DivideByZeroException("Error");
+               throw new DivideByZeroException("Error: Cannot Divide by Zero");
 
             }
             else
@@ -62,7 +62,7 @@ namespace Calculator
         {
             if (divisor == 0)
             {
-                throw new DivideByZeroException();
+                throw new DivideByZeroException("Error: Cannot Divide by Zero");
 
             }
             else
